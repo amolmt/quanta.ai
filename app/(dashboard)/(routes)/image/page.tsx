@@ -155,7 +155,7 @@ const ImagePage = () => {
                 className="col-span-12 lg:col-span-2 w-full"
                 disabled={isLoading}
               >
-                Generate Images
+                Generate
               </Button>
             </form>
           </Form>

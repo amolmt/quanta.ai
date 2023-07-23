@@ -96,7 +96,7 @@ const CodePage = () => {
                 className="col-span-12 lg:col-span-2 w-full"
                 disabled={isLoading}
               >
-                Generate Code
+                Generate
               </Button>
             </form>
           </Form>
