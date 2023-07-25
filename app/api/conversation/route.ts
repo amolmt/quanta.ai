@@ -1,3 +1,4 @@
+import { checkApiLimit, increaseApiLimit } from "@/lib/api-limit";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
@@ -30,10 +31,20 @@ export async function POST(req: Request) {
       });
     }
 
+    const freeTier = await checkApiLimit();
+
+    if (!freeTier) {
+      return new NextResponse("Free tier has expired.", {
+        status: 403,
+      });
+    }
+
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages,
     });
+
+    await increaseApiLimit();
 
     return NextResponse.json(response.data.choices[0].message);
   } catch (error: any) {
