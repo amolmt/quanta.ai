@@ -1,7 +1,10 @@
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
+import { getApiLimitCount } from "@/lib/api-limit";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
+  const apiLimitCount = await getApiLimitCount();
+
   return (
     <div className="h-full relative">
       <div
@@ -16,7 +19,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             z-[80]
             bg-gray-900"
       >
-        <Sidebar />
+        <Sidebar apiLimitCount={apiLimitCount} />
       </div>
       <div className="md:pl-72">
         <Navbar />
