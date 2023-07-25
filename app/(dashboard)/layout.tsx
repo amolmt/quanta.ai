@@ -16,7 +16,6 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
             md:flex-col
             md:fixed
             md:inset-y-0
-            z-[80]
             bg-gray-900"
       >
         <Sidebar apiLimitCount={apiLimitCount} />
